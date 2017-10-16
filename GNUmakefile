@@ -52,6 +52,7 @@ COMPILER_SOURCES = compiler/space.c \
 		   compiler/generator.c \
 		   compiler/driver.c \
 		   compiler/generator_java.c \
+		   compiler/generator_elixir.c \
 		   compiler/generator_jsx.c \
 		   compiler/generator_python.c \
 		   compiler/generator_rust.c \
@@ -393,6 +394,26 @@ dist_libstemmer_jsx: $(JSX_SOURCES)
 	 echo "README" >> MANIFEST && \
 	 ls $(jsx_runtime_dir)/*.jsx >> MANIFEST && \
 	 ls $(jsx_sample_dir)/*.jsx >> MANIFEST) && \
+	(cd dist && tar zcf $${destname}.tgz $${destname}) && \
+	rm -rf $${dest}
+
+dist_libstemmer_elixir: $(RUNTIME_SOURCES) $(RUNTIME_HEADERS) \
+            $(LIBSTEMMER_EXTRA) \
+	    $(JAVA_SOURCES)
+	destname=libstemmer_java; \
+	dest=dist/$${destname}; \
+	rm -rf $${dest} && \
+	rm -f $${dest}.tgz && \
+	mkdir -p $${dest} && \
+	cp -a doc/libstemmer_java_README $${dest}/README && \
+	mkdir -p $${dest}/$(java_src_dir) && \
+	cp -a $(JAVA_SOURCES) $${dest}/$(java_src_dir) && \
+	mkdir -p $${dest}/$(java_src_main_dir) && \
+	cp -a $(JAVARUNTIME_SOURCES) $${dest}/$(java_src_main_dir) && \
+	(cd $${dest} && \
+	 echo "README" >> MANIFEST && \
+	 ls $(java_src_dir)/*.java >> MANIFEST && \
+	 ls $(java_src_main_dir)/*.java >> MANIFEST) && \
 	(cd dist && tar zcf $${destname}.tgz $${destname}) && \
 	rm -rf $${dest}
 

@@ -313,7 +313,7 @@ struct options {
     FILE * output_h;
     byte syntax_tree;
     enc encoding;
-    enum { LANG_JAVA, LANG_C, LANG_CPLUSPLUS, LANG_PYTHON, LANG_JSX, LANG_RUST, LANG_GO } make_lang;
+    enum { LANG_JAVA, LANG_C, LANG_CPLUSPLUS, LANG_PYTHON, LANG_JSX, LANG_RUST, LANG_GO, LANG_ELIXIR } make_lang;
     const char * externals_prefix;
     const char * variables_prefix;
     const char * runtime_path;

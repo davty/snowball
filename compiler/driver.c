@@ -34,6 +34,9 @@ static void print_arglist(void) {
 #ifndef DISABLE_GO
                     "             [-go]\n"
 #endif
+#ifndef DISABLE_ELIXIR
+                    "             [-elixir]\n"
+#endif
                     "             [-w[idechars]]\n"
                     "             [-u[tf8]]\n"
                     "             [-n[ame] class name]\n"
@@ -146,6 +149,13 @@ static void read_options(struct options * o, int argc, char * argv[]) {
             if (eq(s, "-py") || eq(s, "-python")) {
                 o->make_lang = LANG_PYTHON;
                 o->encoding = ENC_WIDECHARS;
+                continue;
+            }
+#endif
+#ifndef DISABLE_ELIXIR
+            if (eq(s, "-e") || eq(s, "-elixir")) {
+                o->make_lang = LANG_ELIXIR;
+                o->encoding = ENC_UTF8;
                 continue;
             }
 #endif
